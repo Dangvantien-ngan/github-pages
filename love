@@ -1,0 +1,41 @@
+const notification = document.getElementById('notification');
+        let fontSize = 18;
+
+        noBtn.addEventListener('click', () => {
+            fontSize += 5;
+            yesBtn.style.fontSize = fontSize + 'px';
+            yesBtn.style.padding = (fontSize/2) + 'px ' + fontSize + 'px';
+        });
+
+        yesBtn.addEventListener('click', () => {
+            notification.style.display = 'block';
+            // Tạo hiệu ứng tim rơi
+            createHearts();
+        });
+
+        function createHearts() {
+            for(let i = 0; i < 40; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = ['❤️', '💖', '💕'][Math.floor(Math.random() * 3)];
+                heart.style.position = 'fixed';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = '-20px';
+                heart.style.fontSize = '24px';
+                heart.style.transform = `rotate(${Math.random() * 360}deg)`;
+                heart.style.transition = 'all 3s ease-out';
+                heart.style.zIndex = '999';
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.style.top = '120vh';
+                    heart.style.transform = `rotate(${Math.random() * 360}deg)`;
+                }, 100);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>
