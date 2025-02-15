@@ -1,0 +1,156 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lời Tỏ Tình Dễ Thương</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #ffd1d1, #ff9ecd);
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #ff4d8d;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        #yesBtn {
+            background-color: #ff4d8d;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #gray;
+            color: #333;
+        }
+
+        .hearts {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #ff4d8d;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .beating-heart {
+            animation: heartBeat 1s infinite;
+        }
+
+        .notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            display: none;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .notification h2 {
+            color: #ff4d8d;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tớ thích Như, Như cho tớ cơ hội tìm hiểu cậu nhé💕💕💕</h1>
+        <div class="hearts">
+            ❤️ ❤️ ❤️
+        </div>
+        <div class="buttons">
+            <button id="yesBtn">Đồng ý</button>
+            <button id="noBtn">Không đồng ý</button>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">
+        <h2>Yêu cậu nhiều lắm! 💖</h2>
+        <p>Từ giờ tớ sẽ luôn dõi theo cậu!💖</p>
+        <div class="hearts beating-heart">
+            ❤️ 💖 ❤️
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const notification = document.getElementById('notification');
+        let fontSize = 18;
+
+        noBtn.addEventListener('click', () => {
+            fontSize += 5;
+            yesBtn.style.fontSize = fontSize + 'px';
+            yesBtn.style.padding = (fontSize/2) + 'px ' + fontSize + 'px';
+        });
+
+        yesBtn.addEventListener('click', () => {
+            notification.style.display = 'block';
+            // Tạo hiệu ứng tim rơi
+            createHearts();
+        });
+
+        function createHearts() {
+            for(let i = 0; i < 40; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = ['❤️', '💖', '💕'][Math.floor(Math.random() * 3)];
+                heart.style.position = 'fixed';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = '-20px';
+                heart.style.fontSize = '24px';
+                heart.style.transform = `rotate(${Math.random() * 360}deg)`;
+                heart.style.transition = 'all 3s ease-out';
+                heart.style.zIndex = '999';
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.style.top = '120vh';
+                    heart.style.transform = `rotate(${Math.random() * 360}deg)`;
+                }, 100);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>
