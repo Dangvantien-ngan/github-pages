@@ -1,0 +1,45 @@
+import time
+import os
+from datetime import datetime
+import random
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def print_heart():
+    hearts = ['❤️', '💖', '💗', '💓', '💕']
+    heart = f"""
+          {random.choice(hearts)}     {random.choice(hearts)}
+        {random.choice(hearts)}   💘     {random.choice(hearts)}
+      {random.choice(hearts)}             {random.choice(hearts)}
+      {random.choice(hearts)} Minh  Vân    {random.choice(hearts)}
+      {random.choice(hearts)}             {random.choice(hearts)}
+        {random.choice(hearts)}         {random.choice(hearts)}
+           {random.choice(hearts)}    {random.choice(hearts)}
+              {random.choice(hearts)}
+    """
+    print(heart)
+
+def get_love_message():
+    messages = [
+        "Minh yêu Vân nhiều lắm 💝",
+        "Vân là điều tuyệt vời nhất của Minh 💖",
+        "Mãi bên nhau em nhé 💑",
+        "Vân là tình yêu của Minh 💕",
+        "Yêu Vân vô cùng 💗"
+    ]
+    return random.choice(messages)
+
+def main():
+    while True:
+        clear_screen()
+        current_time = datetime.now().strftime("%H:%M:%S")
+        print("\n" + "=" * 40)
+        print_heart()
+        print(f"\n{get_love_message()}")
+        print(f"\n⌚ {current_time}")
+        print("=" * 40)
+        time.sleep(1)
+
+if __name__ == "__main__":
+    main()
